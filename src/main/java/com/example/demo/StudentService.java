@@ -24,16 +24,27 @@ public class StudentService {
                 : null;
     }
 
-    public void addStudent(Student student) {
+    public boolean addStudent(Student student) {
+        if (studentRepository.existsById(student.getId())) {
+            return false;
+        }
         studentRepository.save(student);
+        return true;
     }
 
-    public void updateStudent(String id, Student student) {
-        if (studentRepository.existsById(id))
+    public boolean updateStudent(String id, Student student) {
+        if (studentRepository.existsById(id)) {
             studentRepository.save(student);
+            return true;
+        }
+        return false;
     }
 
-    public void deleteStudent(String id) {
-        studentRepository.deleteById(id);
+    public boolean deleteStudent(String id) {
+        if (studentRepository.existsById(id)) {
+            studentRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
