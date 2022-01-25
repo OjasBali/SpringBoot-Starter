@@ -16,22 +16,22 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @RequestMapping("/students/{id}")
+    @GetMapping("/students/{id}")
     public Student getStudent(@PathVariable String id) {
         return studentService.getStudent(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/students")
+    @PostMapping("/students")
     public void addStudent(@RequestBody Student student) {
         studentService.addStudent(student);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/students/{id}")
+    @PutMapping("/students/{id}")
     public void updateStudent(@RequestBody Student student, @PathVariable String id) {
         studentService.updateStudent(id, student);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/students/{id}")
+    @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable String id) {
         studentService.deleteStudent(id);
     }
