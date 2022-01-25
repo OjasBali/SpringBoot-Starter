@@ -1,4 +1,6 @@
-package com.example.demo;
+package com.example.demo.models;
+
+import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +10,8 @@ public class Student {
 
     @Id
     private String id;
+
+    @NotNull
     private String name;
     private String major;
 

@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.service.impl;
 
+import com.example.demo.models.Student;
+import com.example.demo.repo.StudentRepository;
+import com.example.demo.service.StudentServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,11 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class StudentService {
+public class StudentService implements StudentServiceInterface {
+
+    //API level
+    // controller - rest API
+    // DTO - data transfer object
+
+    // validation level
+    // validation - Request
+
+    // service layer
+    // BO - Business object
+
+    // DB Layer
+    // Entity
 
     @Autowired
     private StudentRepository studentRepository;
 
+    @Override
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
         studentRepository.findAll().forEach(students::add);
