@@ -8,14 +8,17 @@ public class ErrorModel {
 
     private HttpStatus httpStatus;
 
+    private int errorCode;
+
     private LocalDateTime timestamp;
 
     private String message;
 
     private String details;
 
-    public ErrorModel(HttpStatus httpStatus, String message, String details) {
+    public ErrorModel(HttpStatus httpStatus, int errorCode, String message, String details) {
         this.httpStatus = httpStatus;
+        this.errorCode = errorCode;
         this.timestamp = LocalDateTime.now();
         this.message = message;
         this.details = details;
@@ -23,6 +26,10 @@ public class ErrorModel {
 
     public HttpStatus getHttpStatus() {
         return httpStatus;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
     }
 
     public LocalDateTime getTimestamp() {
