@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.Bos.StudentBo;
 import com.example.demo.models.Student;
 
 import java.util.List;
@@ -34,5 +35,9 @@ public interface StudentServiceInterface {
 
     // datasource- DB
     // cache - Redis ?
-    List<Student> getAllStudents();
+    List<StudentBo> getAllStudents();
+    StudentBo getStudent(String id);
+    void addStudent(StudentBo student);
+    void updateStudent(String id, StudentBo student);
+    void deleteStudent(String id);
 }
