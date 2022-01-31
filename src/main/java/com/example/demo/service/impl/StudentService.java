@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.Bos.StudentBo;
 import com.example.demo.models.Student;
 import com.example.demo.repo.StudentRepository;
 import com.example.demo.service.StudentServiceInterface;
@@ -29,25 +30,23 @@ public class StudentService implements StudentServiceInterface {
     private StudentRepository studentRepository;
 
     @Override
-    public List<Student> getAllStudents() {
-        List<Student> students = new ArrayList<>();
-        studentRepository.findAll().forEach(students::add);
+    public List<StudentBo> getAllStudents() {
+        List<StudentBo> students = new ArrayList<>();
+        studentRepository.findAll().forEach(student -> students.add(new StudentBo(student)));
         return students;
     }
 
-    public Student getStudent(String id) {
-        return studentRepository.findById(id).isPresent()
-                ? studentRepository.findById(id).get()
-                : null;
+    public StudentBo getStudent(String id) {
+        return new StudentBo(studentRepository.findById(id).get());
     }
 
-    public void addStudent(Student student) {
-        studentRepository.save(student);
+    public void addStudent(StudentBo studentBo) {
+        studentRepository.save(studentBo.boToEntity());
     }
 
-    public void updateStudent(String id, Student student) {
+    public void updateStudent(String id, StudentBo studentBo) {
         if (studentRepository.existsById(id))
-            studentRepository.save(student);
+            studentRepository.save(studentBo.boToEntity());
     }
 
     public void deleteStudent(String id) {
